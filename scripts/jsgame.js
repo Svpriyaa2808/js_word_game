@@ -100,16 +100,13 @@ const getRandomNumber = () => {
 getRandomNumber();
 
     computerArray = [computerWord.substring(0,1),computerWord.substring(1,2),computerWord.substring(2,3),computerWord.substring(3)];
-    console.log(computerWord);
-    console.log(computerArray);
-    console.log(computerHint);
-
     alert("Welcome to the word guessing game");
 
 const hintfunction = () => {
     
     alert(`HINT : ${computerHint} You have '${counter}' attempts`);
 }
+
 hintfunction();
 
 const inputValidation = () => {
@@ -126,7 +123,7 @@ const gameLoop = () => {
         userWord =prompt("Enter a word"); 
         
         if(typeof userWord === "object") {
-            alert(`You cancel the game.`);
+            alert(`You cancelled the game.`);
             break;
         }
 
@@ -136,25 +133,23 @@ const gameLoop = () => {
         
         if(computerWord !== userWord) {
       
-                for(let i=0 ; i < computerArray.length ; i++ ){
+            for(let i=0 ; i < computerArray.length ; i++ ){
     
-                    if(userArray.includes(computerArray[i])) {             
-                        alert(`The letter '${computerArray[i]}' is in the position '${i+1}'  of the guessed word`);          
-                    }     
-                }              
-                counter--;
-                hintfunction();
-                
-            } else{
-                winner=true; 
-                alert(`You Won the guessed word '${userWord}' is correct`);     
-            }
+                if(userArray.includes(computerArray[i])) {             
+                    alert(`The letter '${computerArray[i]}' is in the position '${i+1}'  of the guessed word`);          
+                }     
+            }              
+            counter--;
+            hintfunction();                
+        } else{
+            winner=true; 
+            alert(`Congratulations!!!! You Won, the guessed word '${userWord.toUpperCase()}' is correct`);     
+        }
     }
     
 }
     
 gameLoop();
-
 
 if(counter <= 0 ) {
     alert( `You LOST `)

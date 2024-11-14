@@ -33,6 +33,10 @@ body {
     position: relative;
 }
 
+.instruction h5 {
+    font-size: 20px;
+}
+
 .start_button {
     position: absolute;
     margin-top: 5%;
@@ -57,28 +61,6 @@ body {
     border: none;
     cursor: pointer;
 }
-
-/*.game-area {
-    position: absolute;
-    height: 300px;
-    width: 300px;
-    top: 20%;
-    right: 40%;
-    border: 2px solid black;
-}
-
-.game-grid {
-    margin-top: 32px;
-    margin-left: 32px;
-    padding: 16px;
-    display: grid;
-    grid-template: repeat(1, 50px) / repeat(4, 50px);
-    gap: 16px;
-}
-
-.grid {
-    background-color: aquamarine;
-}*/
 
 .footer {
     background-color: aliceblue;
