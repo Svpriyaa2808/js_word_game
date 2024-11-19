@@ -93,11 +93,13 @@ let validation;
 const game = () => {
 
 const getRandomNumber = () => {
-   let randomNumber = Math.floor(Math.random()*wordsArray.length);
+
+    let randomNumber = Math.floor(Math.random()*wordsArray.length);
    let guessedWord = wordsArray[randomNumber];
    computerWord = guessedWord.word;
    computerHint = guessedWord.hint;
 }
+
 getRandomNumber();
 
     computerArray = [computerWord.substring(0,1),computerWord.substring(1,2),computerWord.substring(2,3),computerWord.substring(3)];
@@ -107,6 +109,7 @@ const hintfunction = () => {
     
     alert(`HINT : ${computerHint} You have '${counter}' attempts`);
 }
+
 hintfunction();
 
 const inputValidation = () => {
@@ -179,6 +182,3 @@ let startButton = document.querySelector(".play_button");
 startButton.onclick = () => {
     playAgain();
 }
-
-
-
