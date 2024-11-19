@@ -82,12 +82,13 @@ let wordsArray = [
 ];
 let computerWord;
 let userWord ; 
-let pattern = /^[A-Za-z]*$/;
+const pattern =  /^[a-zA-Z]+$/;
 let userArray=[];
 let computerArray = [];
 let computerHint ;
 let winner = false;
 let counter = 4;
+let validation;
 
 const game = () => {
 
@@ -106,53 +107,53 @@ const hintfunction = () => {
     
     alert(`HINT : ${computerHint} You have '${counter}' attempts`);
 }
-
 hintfunction();
 
 const inputValidation = () => {
-    let validation = pattern.test(userWord);
+
+    validation = pattern.test(userWord);
     if(validation === false || userWord.length != computerWord.length ) {
         alert(`Enter four letter word`);
         userWord = prompt("Enter a word");
-    }
+        inputValidation();
+    }    
 }
 
 const gameLoop = () => {
    
     while(!winner && counter > 0 ) {
-        userWord =prompt("Enter a word"); 
-        
-        if(typeof userWord === "object") {
+        userWord =prompt("Enter a word");     
+       if(typeof userWord === "object") {
             alert(`You cancelled the game.`);
             break;
         }
-
         userWord = userWord.toLowerCase();  
         inputValidation();
         userArray = [userWord.substring(0,1),userWord.substring(1,2),userWord.substring(2,3),userWord.substring(3)];
-        
+        let match = false; 
         if(computerWord !== userWord) {
-      
-            for(let i=0 ; i < computerArray.length ; i++ ){
-    
-                if(userArray.includes(computerArray[i])) {             
-                    alert(`The letter '${computerArray[i]}' is in the position '${i+1}'  of the guessed word`);          
-                }     
-            }              
+            computerArray.forEach((letter, index) => { 
+                if (userArray.includes(letter)) {
+                    alert(`The letter '${letter}' is in the position '${index + 1}' of the guessed word`);
+                    match = true;
+                }
+            });
+            if (!match) {
+                alert(`No letter matches`);
+            }
             counter--;
             hintfunction();                
         } else{
             winner=true; 
-            alert(`Congratulations!!!! You Won, the guessed word '${userWord.toUpperCase()}' is correct`);     
+            alert(`Congratulations!!!! You "Won", the guessed word '${userWord.toUpperCase()}' is correct`);     
         }
-    }
-    
+    }   
 }
     
 gameLoop();
 
 if(counter <= 0 ) {
-    alert( `You LOST `)
+    alert( `You "LOST". The correct word is  '${computerWord.toUpperCase()}' `);
 }
 
 }
@@ -166,7 +167,7 @@ const playAgain = () => {
         counter = 4;
         playMore = prompt("If you want to play again, press 'y'. To cancel, press 'n'.");
         if(typeof playMore === "object") {
-            alert("Thank you for playing!")
+            alert("Thank you for playing!");
         }
         playMore = playMore.toLowerCase();
     } while (playMore === 'y');
@@ -178,4 +179,6 @@ let startButton = document.querySelector(".play_button");
 startButton.onclick = () => {
     playAgain();
 }
+
+
 
